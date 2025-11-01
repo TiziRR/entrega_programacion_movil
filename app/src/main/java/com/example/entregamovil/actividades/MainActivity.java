@@ -19,6 +19,7 @@ import com.example.entregamovil.models.User;
 
 public class MainActivity extends AppCompatActivity {
 
+    // BD
     EditText input_usuario, input_contrasena;
     Button btn_ingresar;
 
@@ -46,35 +47,25 @@ public class MainActivity extends AppCompatActivity {
 
         dbHelper = new DBHelper(MainActivity.this);
 
+        // Crear usuario admin por defecto (solo si no existe)
         User usuarioNuevo = new User(0, "admin", "admin");
-        long id = dbHelper.addUser(usuarioNuevo); // id devuelto por sqlite (o -1 si falla)
+        long id = dbHelper.addUser(usuarioNuevo);
 
         btn_ingresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                // Leemos los valores ingresados en los EditText
                 nombreUsuario = input_usuario.getText().toString();
                 contrasenia = input_contrasena.getText().toString();
 
-                // Consultamos localmente si existe un usuario con ese nombre + contraseña
                 User usuarioIngresado = dbHelper.comprobarUsuarioLocal(nombreUsuario, contrasenia);
 
-                /*
-                 * Lógica de navegación:
-                 * - Si usuarioIngresado tiene id != -1 => existe en la DB => abrimos Principal.
-                 * - Si no existe mostramos un Toast indicando que no existe.
-                 *
-                 * Nota de seguridad: comprobarUsuarioLocal compara contraseña en texto plano.
-                 * Mejor usar hashes y validar con funciones seguras.
-                 */
-
                 if (usuarioIngresado.getId() != -1) {
-                    // Usuario válido -> vamos a la pantalla principal
+                    // Login exitoso - ir a la pantalla principal
                     Intent intent = new Intent(MainActivity.this, Principal.class);
                     startActivity(intent);
+                    finish(); // Cerrar el login para que no pueda volver con el botón atrás
                 } else {
-                    // Usuario inválido -> feedback al usuario
                     Toast.makeText(MainActivity.this, "Usuario no existe", Toast.LENGTH_SHORT).show();
                 }
 
