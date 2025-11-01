@@ -1,20 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- UBICACIÓN: app/src/main/res/layout/item_carousel.xml -->
 
-<androidx.cardview.widget.CardView
+<ImageView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ivCarouselImage"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
-    android:layout_margin="8dp"
-    app:cardCornerRadius="12dp"
-    app:cardElevation="6dp">
-
-    <ImageView
-        android:id="@+id/ivCarouselImage"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_launcher_background"
-        android:contentDescription="Banner destacado" />
-
-</androidx.cardview.widget.CardView>
+    android:layout_height="match_parent"
+    android:scaleType="centerCrop"
+    android:src="@drawable/ic_launcher_background"
+    android:contentDescription="Banner destacado" />
