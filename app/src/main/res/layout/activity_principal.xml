@@ -121,7 +121,7 @@
                     android:layout_width="0dp"
                     android:layout_height="60dp"
                     android:layout_weight="1"
-                    android:src="@drawable/ic_launcher_foreground"
+                    android:src="@drawable/sponsor_uno"
                     android:contentDescription="Marca 1"
                     android:layout_margin="4dp" />
 
@@ -129,7 +129,7 @@
                     android:layout_width="0dp"
                     android:layout_height="60dp"
                     android:layout_weight="1"
-                    android:src="@drawable/ic_launcher_foreground"
+                    android:src="@drawable/sponsor_dos"
                     android:contentDescription="Marca 2"
                     android:layout_margin="4dp" />
 
@@ -137,7 +137,7 @@
                     android:layout_width="0dp"
                     android:layout_height="60dp"
                     android:layout_weight="1"
-                    android:src="@drawable/ic_launcher_foreground"
+                    android:src="@drawable/sponsor_tres"
                     android:contentDescription="Marca 3"
                     android:layout_margin="4dp" />
 
