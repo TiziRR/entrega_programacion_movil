@@ -13,8 +13,6 @@
         android:theme="@style/Theme.EntregaMovil"
         tools:targetApi="31">
 
-        <activity android:name=".actividades.Principal"/>
-
         <activity
             android:name=".actividades.MainActivity"
             android:exported="true">
@@ -24,6 +22,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".actividades.Principal"
+            android:exported="false"/>
     </application>
 
 </manifest>
