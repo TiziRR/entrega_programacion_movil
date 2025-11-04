@@ -56,17 +56,16 @@ public class Principal extends AppCompatActivity {
     }
 
     private void setupCarousel() {
-        // Inicializar lista de imágenes del carousel
-        carouselImages = new ArrayList<>();
-        carouselImages.add(R.drawable.ic_launcher_background);
-        carouselImages.add(R.drawable.ic_launcher_background);
-        carouselImages.add(R.drawable.ic_launcher_background);
 
-        // Configurar adaptador
+        carouselImages = new ArrayList<>();
+        carouselImages.add(R.drawable.gente);
+        carouselImages.add(R.drawable.sponsor_dos);
+        carouselImages.add(R.drawable.sponsor_uno);
+
         CarouselAdapter carouselAdapter = new CarouselAdapter(carouselImages);
         viewPagerCarousel.setAdapter(carouselAdapter);
 
-        // Configurar indicadores
+
         setupIndicators(carouselImages.size());
         setCurrentIndicator(0);
 
@@ -134,7 +133,7 @@ public class Principal extends AppCompatActivity {
         for (int i = 1; i <= 3; i++) {
             products.add(new Product(
                     category + " " + i,
-                    R.drawable.ic_launcher_background,
+                    R.drawable.gente,
                     5.0f,
                     0
             ));
