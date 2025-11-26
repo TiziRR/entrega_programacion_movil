@@ -1,16 +1,65 @@
 package com.example.entregamovil.models;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
+    private int id;
     private String name;
-    private int imageResId;
+    private String imageUrl; // Cambié a String para guardar nombre de imagen
+    private int imageResId;  // Mantener para compatibilidad
     private float rating;
     private int ratingCount;
+    private String categoria;
+    private String localidad;
+    private String ventas;
+    private String direccion;
+    private String descripcion;
+    private String tagCategoria;
 
-    public Product(String name, int imageResId, float rating, int ratingCount) {
+    // Constructor vacío
+    public Product() {
+    }
+
+    // Constructor completo para BD
+    public Product(int id, String name, String imageUrl, float rating, int ratingCount,
+                   String categoria, String localidad, String ventas,
+                   String direccion, String descripcion, String tagCategoria) {
+        this.id = id;
         this.name = name;
-        this.imageResId = imageResId;
+        this.imageUrl = imageUrl;
         this.rating = rating;
         this.ratingCount = ratingCount;
+        this.categoria = categoria;
+        this.localidad = localidad;
+        this.ventas = ventas;
+        this.direccion = direccion;
+        this.descripcion = descripcion;
+        this.tagCategoria = tagCategoria;
+    }
+
+    // Constructor simplificado (sin ID, para insertar)
+    public Product(String name, String imageUrl, float rating, int ratingCount,
+                   String categoria, String localidad, String ventas,
+                   String direccion, String descripcion, String tagCategoria) {
+        this.name = name;
+        this.imageUrl = imageUrl;
+        this.rating = rating;
+        this.ratingCount = ratingCount;
+        this.categoria = categoria;
+        this.localidad = localidad;
+        this.ventas = ventas;
+        this.direccion = direccion;
+        this.descripcion = descripcion;
+        this.tagCategoria = tagCategoria;
+    }
+
+    // Getters y Setters
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -19,6 +68,14 @@ public class Product {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public int getImageResId() {
@@ -43,5 +100,53 @@ public class Product {
 
     public void setRatingCount(int ratingCount) {
         this.ratingCount = ratingCount;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public String getLocalidad() {
+        return localidad;
+    }
+
+    public void setLocalidad(String localidad) {
+        this.localidad = localidad;
+    }
+
+    public String getVentas() {
+        return ventas;
+    }
+
+    public void setVentas(String ventas) {
+        this.ventas = ventas;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getTagCategoria() {
+        return tagCategoria;
+    }
+
+    public void setTagCategoria(String tagCategoria) {
+        this.tagCategoria = tagCategoria;
     }
 }

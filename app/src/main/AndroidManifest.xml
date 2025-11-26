@@ -26,6 +26,10 @@
         <activity
             android:name=".actividades.Principal"
             android:exported="false"/>
+
+        <activity
+            android:name=".actividades.DetalleProducto"
+            android:exported="false" />
     </application>
 
 </manifest>

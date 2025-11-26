@@ -16,6 +16,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.example.entregamovil.R;
 import com.example.entregamovil.adapters.CarouselAdapter;
 import com.example.entregamovil.adapters.ProductAdapter;
+import com.example.entregamovil.database.DBHelper;
 import com.example.entregamovil.models.Product;
 
 import java.util.ArrayList;
@@ -31,6 +32,9 @@ public class Principal extends AppCompatActivity {
     private List<Integer> carouselImages;
     private ImageView[] indicators;
 
+    // Base de datos
+    private DBHelper dbHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +45,9 @@ public class Principal extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        // Inicializar base de datos
+        dbHelper = new DBHelper(this);
 
         initViews();
         setupCarousel();
@@ -56,16 +63,17 @@ public class Principal extends AppCompatActivity {
     }
 
     private void setupCarousel() {
-
+        // Inicializar lista de imágenes del carousel
         carouselImages = new ArrayList<>();
-        carouselImages.add(R.drawable.gente);
-        carouselImages.add(R.drawable.sponsor_dos);
-        carouselImages.add(R.drawable.sponsor_uno);
+        carouselImages.add(R.drawable.ic_launcher_background);
+        carouselImages.add(R.drawable.ic_launcher_background);
+        carouselImages.add(R.drawable.ic_launcher_background);
 
+        // Configurar adaptador
         CarouselAdapter carouselAdapter = new CarouselAdapter(carouselImages);
         viewPagerCarousel.setAdapter(carouselAdapter);
 
-
+        // Configurar indicadores
         setupIndicators(carouselImages.size());
         setCurrentIndicator(0);
 
@@ -103,8 +111,17 @@ public class Principal extends AppCompatActivity {
     }
 
     private void setupRecyclerViews() {
+        // Obtener productos de la base de datos por categoría
+        List<Product> ferreteriaList = dbHelper.getProductsByCategory("Ferretería");
+        List<Product> herreriaList = dbHelper.getProductsByCategory("Herrería");
+        List<Product> maderaList = dbHelper.getProductsByCategory("Madera");
+
+        // Configurar imagen de recursos para cada producto
+        setImageResources(ferreteriaList);
+        setImageResources(herreriaList);
+        setImageResources(maderaList);
+
         // Configurar RecyclerView de Ferretería
-        List<Product> ferreteriaList = createDummyProducts("Ferretería");
         ProductAdapter ferreteriaAdapter = new ProductAdapter(ferreteriaList);
         recyclerFerreteria.setLayoutManager(
                 new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
@@ -112,7 +129,6 @@ public class Principal extends AppCompatActivity {
         recyclerFerreteria.setAdapter(ferreteriaAdapter);
 
         // Configurar RecyclerView de Herrería
-        List<Product> herreriaList = createDummyProducts("Herrería");
         ProductAdapter herreriaAdapter = new ProductAdapter(herreriaList);
         recyclerHerreria.setLayoutManager(
                 new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
@@ -120,7 +136,6 @@ public class Principal extends AppCompatActivity {
         recyclerHerreria.setAdapter(herreriaAdapter);
 
         // Configurar RecyclerView de Madera
-        List<Product> maderaList = createDummyProducts("Madera");
         ProductAdapter maderaAdapter = new ProductAdapter(maderaList);
         recyclerMadera.setLayoutManager(
                 new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
@@ -128,16 +143,28 @@ public class Principal extends AppCompatActivity {
         recyclerMadera.setAdapter(maderaAdapter);
     }
 
-    private List<Product> createDummyProducts(String category) {
-        List<Product> products = new ArrayList<>();
-        for (int i = 1; i <= 3; i++) {
-            products.add(new Product(
-                    category + " " + i,
-                    R.drawable.gente,
-                    5.0f,
-                    0
-            ));
+    // Método para asignar recursos de imagen basados en el imageUrl
+    private void setImageResources(List<Product> products) {
+        for (Product product : products) {
+            // Por ahora usar imagen por defecto
+            // Después puedes mapear imageUrl a recursos drawable específicos
+            product.setImageResId(R.drawable.ic_launcher_background);
+
+            // Ejemplo de mapeo de imágenes (si tenés las imágenes en drawable):
+            /*
+            switch (product.getImageUrl()) {
+                case "tornillo_oro":
+                    product.setImageResId(R.drawable.tornillo_oro);
+                    break;
+                case "martillo":
+                    product.setImageResId(R.drawable.martillo);
+                    break;
+                // ... más casos
+                default:
+                    product.setImageResId(R.drawable.ic_launcher_background);
+                    break;
+            }
+            */
         }
-        return products;
     }
 }
