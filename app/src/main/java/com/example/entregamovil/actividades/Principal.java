@@ -24,7 +24,6 @@ import java.util.List;
 
 public class Principal extends AppCompatActivity {
 
-    // CAROUSEL
     private ViewPager2 viewPagerCarousel;
     private LinearLayout layoutIndicators;
     private RecyclerView recyclerFerreteria, recyclerHerreria, recyclerMadera;
@@ -32,7 +31,6 @@ public class Principal extends AppCompatActivity {
     private List<Integer> carouselImages;
     private ImageView[] indicators;
 
-    // Base de datos
     private DBHelper dbHelper;
 
     @Override
@@ -63,9 +61,9 @@ public class Principal extends AppCompatActivity {
 
     private void setupCarousel() {
         carouselImages = new ArrayList<>();
-        carouselImages.add(R.drawable.ic_launcher_background);
-        carouselImages.add(R.drawable.ic_launcher_background);
-        carouselImages.add(R.drawable.ic_launcher_background);
+        carouselImages.add(R.drawable.sponsor_uno);
+        carouselImages.add(R.drawable.sponsor_dos);
+        carouselImages.add(R.drawable.sponsor_tres);
 
         CarouselAdapter carouselAdapter = new CarouselAdapter(carouselImages);
         viewPagerCarousel.setAdapter(carouselAdapter);
@@ -73,7 +71,6 @@ public class Principal extends AppCompatActivity {
         setupIndicators(carouselImages.size());
         setCurrentIndicator(0);
 
-        // Listener para cambio de página
         viewPagerCarousel.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
