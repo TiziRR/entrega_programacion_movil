@@ -6,7 +6,7 @@ public class Product implements Serializable {
     private int id;
     private String name;
     private String imageUrl; // Cambié a String para guardar nombre de imagen
-    private int imageResId;  // Mantener para compatibilidad
+    private int imageResId;
     private float rating;
     private int ratingCount;
     private String categoria;
@@ -16,11 +16,9 @@ public class Product implements Serializable {
     private String descripcion;
     private String tagCategoria;
 
-    // Constructor vacío
     public Product() {
     }
 
-    // Constructor completo para BD
     public Product(int id, String name, String imageUrl, float rating, int ratingCount,
                    String categoria, String localidad, String ventas,
                    String direccion, String descripcion, String tagCategoria) {
@@ -37,7 +35,6 @@ public class Product implements Serializable {
         this.tagCategoria = tagCategoria;
     }
 
-    // Constructor simplificado (sin ID, para insertar)
     public Product(String name, String imageUrl, float rating, int ratingCount,
                    String categoria, String localidad, String ventas,
                    String direccion, String descripcion, String tagCategoria) {
@@ -53,7 +50,6 @@ public class Product implements Serializable {
         this.tagCategoria = tagCategoria;
     }
 
-    // Getters y Setters
     public int getId() {
         return id;
     }

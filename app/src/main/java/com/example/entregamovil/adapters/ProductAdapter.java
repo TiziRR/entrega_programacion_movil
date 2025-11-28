@@ -40,17 +40,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         Product product = productList.get(position);
         holder.tvProductName.setText(product.getName());
 
-        // Si tiene imageResId usar ese, sino usar el imageUrl
         if (product.getImageResId() != 0) {
             holder.ivProductImage.setImageResource(product.getImageResId());
         } else {
-            // Aquí podrías usar Glide o Picasso para cargar imágenes desde URL
             holder.ivProductImage.setImageResource(android.R.drawable.ic_menu_gallery);
         }
 
         holder.tvRating.setText(product.getRating() + "/" + product.getRatingCount());
 
-        // Click listener para abrir el detalle
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

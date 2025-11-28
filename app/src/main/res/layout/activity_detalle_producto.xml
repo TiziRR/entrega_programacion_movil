@@ -13,7 +13,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Imagen del producto -->
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="300dp">
@@ -26,7 +25,6 @@
                 android:src="@drawable/ic_launcher_background"
                 android:contentDescription="Imagen del producto" />
 
-            <!-- Botón volver -->
             <ImageButton
                 android:id="@+id/btnVolver"
                 android:layout_width="40dp"
@@ -37,7 +35,6 @@
                 android:contentDescription="Volver"
                 app:tint="#FFFFFF" />
 
-            <!-- Tag superior izquierdo -->
             <TextView
                 android:id="@+id/tvTagCategoria"
                 android:layout_width="wrap_content"
@@ -57,14 +54,12 @@
 
         </FrameLayout>
 
-        <!-- Contenido del detalle -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="20dp">
 
-            <!-- Nombre del producto -->
             <TextView
                 android:id="@+id/tvNombreProducto"
                 android:layout_width="wrap_content"
@@ -74,7 +69,6 @@
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
-            <!-- Info: Categoría, Localidad, Ventas -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -110,7 +104,6 @@
 
             </LinearLayout>
 
-            <!-- Rating y Dirección -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -140,7 +133,6 @@
 
             </LinearLayout>
 
-            <!-- Dirección -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -165,7 +157,6 @@
 
             </LinearLayout>
 
-            <!-- Descripción -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -185,7 +176,6 @@
                 android:textColor="#666666"
                 android:textSize="14sp" />
 
-            <!-- Botones de acción -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -212,7 +202,7 @@
                     android:layout_weight="1"
                     android:layout_marginStart="8dp"
                     android:background="@drawable/btn_secondary_background"
-                    android:text="Preguntarle a @username"
+                    android:text="Preguntarle a Hammilton"
                     android:textColor="#FF6600"
                     android:textSize="14sp"
                     android:textStyle="bold" />

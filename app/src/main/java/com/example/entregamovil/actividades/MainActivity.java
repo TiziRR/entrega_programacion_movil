@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
 
         dbHelper = new DBHelper(MainActivity.this);
 
-        // Crear usuario admin por defecto (solo si no existe)
         User usuarioNuevo = new User(0, "admin", "admin");
         long id = dbHelper.addUser(usuarioNuevo);
 
@@ -61,10 +60,9 @@ public class MainActivity extends AppCompatActivity {
                 User usuarioIngresado = dbHelper.comprobarUsuarioLocal(nombreUsuario, contrasenia);
 
                 if (usuarioIngresado.getId() != -1) {
-                    // Login exitoso - ir a la pantalla principal
                     Intent intent = new Intent(MainActivity.this, Principal.class);
                     startActivity(intent);
-                    finish(); // Cerrar el login para que no pueda volver con el botón atrás
+                    finish();
                 } else {
                     Toast.makeText(MainActivity.this, "Usuario no existe", Toast.LENGTH_SHORT).show();
                 }

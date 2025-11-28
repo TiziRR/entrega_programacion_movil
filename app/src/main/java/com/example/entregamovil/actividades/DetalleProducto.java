@@ -98,7 +98,6 @@ public class DetalleProducto extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(DetalleProducto.this,
                         "Contactando al vendedor...", Toast.LENGTH_SHORT).show();
-                // Aquí puedes agregar lógica para abrir WhatsApp, email, etc.
             }
         });
 
@@ -107,7 +106,6 @@ public class DetalleProducto extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(DetalleProducto.this,
                         "Abriendo chat...", Toast.LENGTH_SHORT).show();
-                // Aquí puedes agregar lógica para abrir un chat interno
             }
         });
     }

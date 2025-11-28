@@ -14,16 +14,14 @@ import java.util.List;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "usuario"; // Tu nombre actual
-    private static final int DATABASE_VERSION = 2; // ¡IMPORTANTE! Incrementar de 1 a 2
+    private static final String DATABASE_NAME = "usuario";
+    private static final int DATABASE_VERSION = 2;
 
-    // Tabla Usuarios (YA EXISTENTE)
-    private static final String TABLE_USERS = "usuario"; // Tu nombre de tabla actual
+    private static final String TABLE_USERS = "usuario";
     private static final String COLUMN_USER_ID = "id";
     private static final String COLUMN_USERNAME = "username";
     private static final String COLUMN_PASSWORD = "password";
 
-    // Tabla Productos (NUEVA)
     private static final String TABLE_PRODUCTS = "productos";
     private static final String COLUMN_PRODUCT_ID = "id";
     private static final String COLUMN_PRODUCT_NAME = "name";
@@ -43,24 +41,19 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // Crear tabla usuarios (por si es primera vez)
         String createUsersTable = "CREATE TABLE IF NOT EXISTS " + TABLE_USERS + " (" +
                 COLUMN_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_USERNAME + " TEXT NOT NULL, " +
                 COLUMN_PASSWORD + " TEXT NOT NULL)";
         db.execSQL(createUsersTable);
 
-        // Crear tabla productos
         crearTablaProductos(db);
 
-        // Insertar datos de ejemplo solo si no existen
         insertarDatosIniciales(db);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // NO borrar la tabla usuarios existente
-        // Solo crear la tabla productos si no existe
         if (oldVersion < 2) {
             crearTablaProductos(db);
             insertarProductosEjemplo(db);
@@ -84,12 +77,10 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     private void insertarDatosIniciales(SQLiteDatabase db) {
-        // Verificar si ya existe el usuario admin
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " +
                 COLUMN_USERNAME + " = 'admin'", null);
 
         if (cursor.getCount() == 0) {
-            // Insertar usuario admin solo si no existe
             ContentValues userValues = new ContentValues();
             userValues.put(COLUMN_USERNAME, "admin");
             userValues.put(COLUMN_PASSWORD, "admin");
@@ -97,20 +88,16 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         cursor.close();
 
-        // Insertar productos de ejemplo
         insertarProductosEjemplo(db);
     }
 
     private void insertarProductosEjemplo(SQLiteDatabase db) {
-        // Verificar si ya hay productos
         Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM " + TABLE_PRODUCTS, null);
         cursor.moveToFirst();
         int count = cursor.getInt(0);
         cursor.close();
 
-        // Solo insertar si no hay productos
         if (count == 0) {
-            // Productos de Ferretería
             insertProductoEjemplo(db, "Tornillo de Oro 50x50", "tornillo_oro", 5.0f, 34,
                     "Ferretería", "Posadas", "50+", "Av. Uruguay 1234",
                     "El Tornillo de Oro de 50 x 50 es un tornillo de alta calidad, especialmente diseñado para una sujeción firme y duradera en diversas aplicaciones. Fabricado con un material resistente a la corrosión, es ideal para carpintería, construcción y trabajos de reparación en interiores y exteriores.\n\nEste tornillo cuenta con una cabeza plana que permite un acabado estético, ya que queda al ras de la superficie. Su rosca profunda asegura un agarre firme en madera, paneles y otros materiales, facilitando la instalación y proporcionando mayor estabilidad.",
@@ -126,7 +113,6 @@ public class DBHelper extends SQLiteOpenHelper {
                     "Set completo de 12 destornilladores de diferentes tamaños y tipos. Incluye puntas planas y Phillips. Mangos ergonómicos con grip antideslizante. Ideal para profesionales y uso doméstico.",
                     "BUILDING MATERIALS");
 
-            // Productos de Herrería
             insertProductoEjemplo(db, "Perfil de Hierro L 2x2", "perfil_hierro", 4.7f, 20,
                     "Herrería", "Posadas", "30+", "Av. Corrientes 567",
                     "Perfil de hierro en L de 2x2 pulgadas, ideal para estructuras, rejas y construcciones metálicas. Material de primera calidad con tratamiento anticorrosivo. Longitud de 6 metros.",
@@ -142,7 +128,6 @@ public class DBHelper extends SQLiteOpenHelper {
                     "Caja de 50 electrodos 6013 para soldadura eléctrica. Ideal para trabajos generales de herrería y construcción. Excelente penetración y acabado.",
                     "METAL WORKS");
 
-            // Productos de Madera
             insertProductoEjemplo(db, "Tabla de Pino 2x4", "tabla_pino", 4.4f, 40,
                     "Madera", "Posadas", "55+", "Av. Mitre 890",
                     "Tabla de pino cepillada de 2x4 pulgadas, ideal para construcción y carpintería. Madera seca y lista para usar. Longitud de 3 metros. Excelente calidad y durabilidad.",
@@ -178,8 +163,6 @@ public class DBHelper extends SQLiteOpenHelper {
         db.insert(TABLE_PRODUCTS, null, values);
     }
 
-    // ==================== MÉTODOS USUARIOS (MANTENER COMO ESTABAN) ====================
-
     public long addUser(User user) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -211,8 +194,6 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
         return user;
     }
-
-    // ==================== MÉTODOS PRODUCTOS (NUEVOS) ====================
 
     public long addProduct(Product product) {
         SQLiteDatabase db = this.getWritableDatabase();
